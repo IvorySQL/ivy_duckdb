@@ -1,30 +1,30 @@
 -- Move internal functions that are outside of the duckdb schema to the duckdb schema
-ALTER FUNCTION duckdb_unresolved_type_operator(duckdb.unresolved_type, "any") SET SCHEMA duckdb;
-ALTER FUNCTION duckdb_unresolved_type_operator_bool(duckdb.unresolved_type, "any") SET SCHEMA duckdb;
-ALTER FUNCTION duckdb_unresolved_type_operator("any", duckdb.unresolved_type) SET SCHEMA duckdb;
-ALTER FUNCTION duckdb_unresolved_type_operator_bool("any", duckdb.unresolved_type) SET SCHEMA duckdb;
+ALTER FUNCTION duckdb_unresolved_type_operator(duckdb.unresolved_type, pg_catalog.any) SET SCHEMA duckdb;
+ALTER FUNCTION duckdb_unresolved_type_operator_bool(duckdb.unresolved_type, pg_catalog.any) SET SCHEMA duckdb;
+ALTER FUNCTION duckdb_unresolved_type_operator(pg_catalog.any, duckdb.unresolved_type) SET SCHEMA duckdb;
+ALTER FUNCTION duckdb_unresolved_type_operator_bool(pg_catalog.any, duckdb.unresolved_type) SET SCHEMA duckdb;
 ALTER FUNCTION duckdb_unresolved_type_operator(duckdb.unresolved_type, duckdb.unresolved_type) SET SCHEMA duckdb;
 ALTER FUNCTION duckdb_unresolved_type_operator_bool(duckdb.unresolved_type, duckdb.unresolved_type) SET SCHEMA duckdb;
 ALTER FUNCTION duckdb_unresolved_type_operator(duckdb.unresolved_type) SET SCHEMA duckdb;
 ALTER FUNCTION duckdb_unresolved_type_state_trans(state duckdb.unresolved_type, value duckdb.unresolved_type) SET SCHEMA duckdb;
-ALTER FUNCTION duckdb_unresolved_type_state_trans(state duckdb.unresolved_type, value duckdb.unresolved_type, other "any") SET SCHEMA duckdb;
-ALTER FUNCTION duckdb_unresolved_type_state_trans(state duckdb.unresolved_type, value duckdb.unresolved_type, other "any", another "any") SET SCHEMA duckdb;
+ALTER FUNCTION duckdb_unresolved_type_state_trans(state duckdb.unresolved_type, value duckdb.unresolved_type, other pg_catalog.any) SET SCHEMA duckdb;
+ALTER FUNCTION duckdb_unresolved_type_state_trans(state duckdb.unresolved_type, value duckdb.unresolved_type, other pg_catalog.any, another pg_catalog.any) SET SCHEMA duckdb;
 ALTER FUNCTION duckdb_unresolved_type_final(state duckdb.unresolved_type) SET SCHEMA duckdb;
 ALTER FUNCTION duckdb_unresolved_type_btree_cmp(duckdb.unresolved_type,duckdb.unresolved_type) SET SCHEMA duckdb;
 ALTER FUNCTION duckdb_unresolved_type_hash(duckdb.unresolved_type) SET SCHEMA duckdb;
 ALTER OPERATOR CLASS duckdb_unresolved_type_ops USING btree SET SCHEMA duckdb;
 ALTER OPERATOR CLASS duckdb_unresolved_type_hash_ops USING hash SET SCHEMA duckdb;
 
-ALTER FUNCTION duckdb.duckdb_unresolved_type_operator(duckdb.unresolved_type, "any") RENAME TO unresolved_type_operator;
-ALTER FUNCTION duckdb.duckdb_unresolved_type_operator_bool(duckdb.unresolved_type, "any") RENAME TO unresolved_type_operator_bool;
-ALTER FUNCTION duckdb.duckdb_unresolved_type_operator("any", duckdb.unresolved_type) RENAME TO unresolved_type_operator;
-ALTER FUNCTION duckdb.duckdb_unresolved_type_operator_bool("any", duckdb.unresolved_type) RENAME TO unresolved_type_operator_bool;
+ALTER FUNCTION duckdb.duckdb_unresolved_type_operator(duckdb.unresolved_type, pg_catalog.any) RENAME TO unresolved_type_operator;
+ALTER FUNCTION duckdb.duckdb_unresolved_type_operator_bool(duckdb.unresolved_type, pg_catalog.any) RENAME TO unresolved_type_operator_bool;
+ALTER FUNCTION duckdb.duckdb_unresolved_type_operator(pg_catalog.any, duckdb.unresolved_type) RENAME TO unresolved_type_operator;
+ALTER FUNCTION duckdb.duckdb_unresolved_type_operator_bool(pg_catalog.any, duckdb.unresolved_type) RENAME TO unresolved_type_operator_bool;
 ALTER FUNCTION duckdb.duckdb_unresolved_type_operator(duckdb.unresolved_type, duckdb.unresolved_type) RENAME TO unresolved_type_operator;
 ALTER FUNCTION duckdb.duckdb_unresolved_type_operator_bool(duckdb.unresolved_type, duckdb.unresolved_type) RENAME TO unresolved_type_operator_bool;
 ALTER FUNCTION duckdb.duckdb_unresolved_type_operator(duckdb.unresolved_type) RENAME TO unresolved_type_operator;
 ALTER FUNCTION duckdb.duckdb_unresolved_type_state_trans(state duckdb.unresolved_type, value duckdb.unresolved_type) RENAME TO unresolved_type_state_trans;
-ALTER FUNCTION duckdb.duckdb_unresolved_type_state_trans(state duckdb.unresolved_type, value duckdb.unresolved_type, other "any") RENAME TO unresolved_type_state_trans;
-ALTER FUNCTION duckdb.duckdb_unresolved_type_state_trans(state duckdb.unresolved_type, value duckdb.unresolved_type, other "any", another "any") RENAME TO unresolved_type_state_trans;
+ALTER FUNCTION duckdb.duckdb_unresolved_type_state_trans(state duckdb.unresolved_type, value duckdb.unresolved_type, other pg_catalog.any) RENAME TO unresolved_type_state_trans;
+ALTER FUNCTION duckdb.duckdb_unresolved_type_state_trans(state duckdb.unresolved_type, value duckdb.unresolved_type, other pg_catalog.any, another pg_catalog.any) RENAME TO unresolved_type_state_trans;
 ALTER FUNCTION duckdb.duckdb_unresolved_type_final(state duckdb.unresolved_type) RENAME TO unresolved_type_final;
 ALTER FUNCTION duckdb.duckdb_unresolved_type_btree_cmp(duckdb.unresolved_type,duckdb.unresolved_type) RENAME TO unresolved_type_btree_cmp;
 ALTER FUNCTION duckdb.duckdb_unresolved_type_hash(duckdb.unresolved_type) RENAME TO unresolved_type_hash;
@@ -600,12 +600,12 @@ CREATE OPERATOR pg_catalog.~ (
 
 CREATE OPERATOR pg_catalog.~ (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator
 );
 
 CREATE OPERATOR pg_catalog.~ (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator
 );
@@ -618,12 +618,12 @@ CREATE OPERATOR pg_catalog.!~ (
 
 CREATE OPERATOR pg_catalog.!~ (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator
 );
 
 CREATE OPERATOR pg_catalog.!~ (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator
 );
@@ -636,12 +636,12 @@ CREATE OPERATOR pg_catalog.~~ (
 
 CREATE OPERATOR pg_catalog.~~ (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator
 );
 
 CREATE OPERATOR pg_catalog.~~ (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator
 );
@@ -654,12 +654,12 @@ CREATE OPERATOR pg_catalog.~~* (
 
 CREATE OPERATOR pg_catalog.~~* (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator
 );
 
 CREATE OPERATOR pg_catalog.~~* (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator
 );
@@ -672,12 +672,12 @@ CREATE OPERATOR pg_catalog.!~~ (
 
 CREATE OPERATOR pg_catalog.!~~ (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator
 );
 
 CREATE OPERATOR pg_catalog.!~~ (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator
 );
@@ -690,12 +690,12 @@ CREATE OPERATOR pg_catalog.!~~* (
 
 CREATE OPERATOR pg_catalog.!~~* (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator
 );
 
 CREATE OPERATOR pg_catalog.!~~* (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator
 );

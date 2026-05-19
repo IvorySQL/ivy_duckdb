@@ -109,7 +109,8 @@ struct {
 	Oid ivory_oravarcharbyte_oid;
 	Oid ivory_oracharchar_oid;
 	Oid ivory_oracharbyte_oid;
-	Oid ivory_raw_long_oid;
+	Oid ivory_raw_oid;
+	Oid ivory_long_raw_oid;
 	Oid ivory_xmltype_oid;
 } cache = {};
 
@@ -337,8 +338,10 @@ IsExtensionRegistered() {
 				    GetSysCacheOid2(TYPENAMENSP, Anum_pg_type_oid, CStringGetDatum("oracharchar"), ivory_ns);
 				cache.ivory_oracharbyte_oid =
 				    GetSysCacheOid2(TYPENAMENSP, Anum_pg_type_oid, CStringGetDatum("oracharbyte"), ivory_ns);
-				cache.ivory_raw_long_oid =
-				    GetSysCacheOid2(TYPENAMENSP, Anum_pg_type_oid, CStringGetDatum("raw_long"), ivory_ns);
+				cache.ivory_raw_oid =
+				    GetSysCacheOid2(TYPENAMENSP, Anum_pg_type_oid, CStringGetDatum("raw"), ivory_ns);
+				cache.ivory_long_raw_oid =
+				    GetSysCacheOid2(TYPENAMENSP, Anum_pg_type_oid, CStringGetDatum("long_raw"), ivory_ns);
 				cache.ivory_xmltype_oid =
 				    GetSysCacheOid2(TYPENAMENSP, Anum_pg_type_oid, CStringGetDatum("xmltype"), ivory_ns);
 			} else {
@@ -355,7 +358,8 @@ IsExtensionRegistered() {
 				cache.ivory_oravarcharbyte_oid = InvalidOid;
 				cache.ivory_oracharchar_oid    = InvalidOid;
 				cache.ivory_oracharbyte_oid    = InvalidOid;
-				cache.ivory_raw_long_oid       = InvalidOid;
+				cache.ivory_raw_oid            = InvalidOid;
+				cache.ivory_long_raw_oid       = InvalidOid;
 				cache.ivory_xmltype_oid        = InvalidOid;
 			}
 		}
@@ -561,9 +565,15 @@ IvoryOracharbyteOid() {
 }
 
 Oid
-IvoryRawLongOid() {
+IvoryRawOid() {
 	Assert(cache.valid);
-	return cache.ivory_raw_long_oid;
+	return cache.ivory_raw_oid;
+}
+
+Oid
+IvoryLongRawOid() {
+	Assert(cache.valid);
+	return cache.ivory_long_raw_oid;
 }
 
 Oid

@@ -1,8 +1,8 @@
 -- Add MAP functions support
 -- Extract value from map using key
-CREATE FUNCTION @extschema@.map_extract(map_col duckdb.map, key "any")
+CREATE FUNCTION @extschema@.map_extract(map_col duckdb.map, key pg_catalog.any)
 RETURNS duckdb.unresolved_type AS 'MODULE_PATHNAME', 'duckdb_only_function' LANGUAGE C;
-CREATE FUNCTION @extschema@.map_extract(map_col duckdb.unresolved_type, key "any")
+CREATE FUNCTION @extschema@.map_extract(map_col duckdb.unresolved_type, key pg_catalog.any)
 RETURNS duckdb.unresolved_type AS 'MODULE_PATHNAME', 'duckdb_only_function' LANGUAGE C;
 
 -- Get all keys from map
@@ -24,9 +24,9 @@ CREATE FUNCTION @extschema@.cardinality(map_col duckdb.unresolved_type)
 RETURNS numeric AS 'MODULE_PATHNAME', 'duckdb_only_function' LANGUAGE C;
 
 -- Get element at key (alias for map_extract)
-CREATE FUNCTION @extschema@.element_at(map_col duckdb.map, key "any")
+CREATE FUNCTION @extschema@.element_at(map_col duckdb.map, key pg_catalog.any)
 RETURNS duckdb.unresolved_type AS 'MODULE_PATHNAME', 'duckdb_only_function' LANGUAGE C;
-CREATE FUNCTION @extschema@.element_at(map_col duckdb.unresolved_type, key "any")
+CREATE FUNCTION @extschema@.element_at(map_col duckdb.unresolved_type, key pg_catalog.any)
 RETURNS duckdb.unresolved_type AS 'MODULE_PATHNAME', 'duckdb_only_function' LANGUAGE C;
 
 -- Merge multiple maps
@@ -40,21 +40,21 @@ CREATE FUNCTION @extschema@.map_concat(map_col duckdb.unresolved_type, map_col2 
 RETURNS duckdb.map AS 'MODULE_PATHNAME', 'duckdb_only_function' LANGUAGE C;
 
 -- Check if map contains key
-CREATE FUNCTION @extschema@.map_contains(map_col duckdb.map, key "any")
+CREATE FUNCTION @extschema@.map_contains(map_col duckdb.map, key pg_catalog.any)
 RETURNS boolean AS 'MODULE_PATHNAME', 'duckdb_only_function' LANGUAGE C;
-CREATE FUNCTION @extschema@.map_contains(map_col duckdb.unresolved_type, key "any")
+CREATE FUNCTION @extschema@.map_contains(map_col duckdb.unresolved_type, key pg_catalog.any)
 RETURNS boolean AS 'MODULE_PATHNAME', 'duckdb_only_function' LANGUAGE C;
 
 -- Check if map contains key-value pair
-CREATE FUNCTION @extschema@.map_contains_entry(map_col duckdb.map, key "any", value "any")
+CREATE FUNCTION @extschema@.map_contains_entry(map_col duckdb.map, key pg_catalog.any, value pg_catalog.any)
 RETURNS boolean AS 'MODULE_PATHNAME', 'duckdb_only_function' LANGUAGE C;
-CREATE FUNCTION @extschema@.map_contains_entry(map_col duckdb.unresolved_type, key "any", value "any")
+CREATE FUNCTION @extschema@.map_contains_entry(map_col duckdb.unresolved_type, key pg_catalog.any, value pg_catalog.any)
 RETURNS boolean AS 'MODULE_PATHNAME', 'duckdb_only_function' LANGUAGE C;
 
 -- Check if map contains value
-CREATE FUNCTION @extschema@.map_contains_value(map_col duckdb.map, value "any")
+CREATE FUNCTION @extschema@.map_contains_value(map_col duckdb.map, value pg_catalog.any)
 RETURNS boolean AS 'MODULE_PATHNAME', 'duckdb_only_function' LANGUAGE C;
-CREATE FUNCTION @extschema@.map_contains_value(map_col duckdb.unresolved_type, value "any")
+CREATE FUNCTION @extschema@.map_contains_value(map_col duckdb.unresolved_type, value pg_catalog.any)
 RETURNS boolean AS 'MODULE_PATHNAME', 'duckdb_only_function' LANGUAGE C;
 
 -- Get all key-value pairs as structs
@@ -64,9 +64,9 @@ CREATE FUNCTION @extschema@.map_entries(map_col duckdb.unresolved_type)
 RETURNS duckdb.struct[] AS 'MODULE_PATHNAME', 'duckdb_only_function' LANGUAGE C;
 
 -- Extract single value from map (not as list)
-CREATE FUNCTION @extschema@.map_extract_value(map_col duckdb.map, key "any")
+CREATE FUNCTION @extschema@.map_extract_value(map_col duckdb.map, key pg_catalog.any)
 RETURNS duckdb.unresolved_type AS 'MODULE_PATHNAME', 'duckdb_only_function' LANGUAGE C;
-CREATE FUNCTION @extschema@.map_extract_value(map_col duckdb.unresolved_type, key "any")
+CREATE FUNCTION @extschema@.map_extract_value(map_col duckdb.unresolved_type, key pg_catalog.any)
 RETURNS duckdb.unresolved_type AS 'MODULE_PATHNAME', 'duckdb_only_function' LANGUAGE C;
 
 -- Create map from array of struct(k, v)
