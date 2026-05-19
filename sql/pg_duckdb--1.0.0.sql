@@ -43,7 +43,7 @@ $func$;
 CREATE TYPE duckdb.iceberg_snapshots_record AS (
   sequence_number BIGINT,
   snapshot_id BIGINT,
-  timestamp_ms TIMESTAMP,
+  timestamp_ms pg_catalog.timestamp,
   manifest_list TEXT
 );
 
@@ -233,12 +233,12 @@ CREATE TYPE duckdb.unresolved_type (
 );
 
 -- Dummy functions for binary operators with unresolved type on the lefthand
-CREATE FUNCTION duckdb.unresolved_type_operator(duckdb.unresolved_type, "any") RETURNS duckdb.unresolved_type AS 'MODULE_PATHNAME', 'duckdb_unresolved_type_operator' LANGUAGE C IMMUTABLE STRICT;
-CREATE FUNCTION duckdb.unresolved_type_operator_bool(duckdb.unresolved_type, "any") RETURNS boolean AS 'MODULE_PATHNAME', 'duckdb_unresolved_type_operator' LANGUAGE C IMMUTABLE STRICT;
+CREATE FUNCTION duckdb.unresolved_type_operator(duckdb.unresolved_type, pg_catalog.any) RETURNS duckdb.unresolved_type AS 'MODULE_PATHNAME', 'duckdb_unresolved_type_operator' LANGUAGE C IMMUTABLE STRICT;
+CREATE FUNCTION duckdb.unresolved_type_operator_bool(duckdb.unresolved_type, pg_catalog.any) RETURNS boolean AS 'MODULE_PATHNAME', 'duckdb_unresolved_type_operator' LANGUAGE C IMMUTABLE STRICT;
 
 -- Dummy functions for binary operators with unresolved type on the righthand
-CREATE FUNCTION duckdb.unresolved_type_operator("any", duckdb.unresolved_type) RETURNS duckdb.unresolved_type AS 'MODULE_PATHNAME', 'duckdb_unresolved_type_operator' LANGUAGE C IMMUTABLE STRICT;
-CREATE FUNCTION duckdb.unresolved_type_operator_bool("any", duckdb.unresolved_type) RETURNS boolean AS 'MODULE_PATHNAME', 'duckdb_unresolved_type_operator' LANGUAGE C IMMUTABLE STRICT;
+CREATE FUNCTION duckdb.unresolved_type_operator(pg_catalog.any, duckdb.unresolved_type) RETURNS duckdb.unresolved_type AS 'MODULE_PATHNAME', 'duckdb_unresolved_type_operator' LANGUAGE C IMMUTABLE STRICT;
+CREATE FUNCTION duckdb.unresolved_type_operator_bool(pg_catalog.any, duckdb.unresolved_type) RETURNS boolean AS 'MODULE_PATHNAME', 'duckdb_unresolved_type_operator' LANGUAGE C IMMUTABLE STRICT;
 
 -- Dummy functions for binary operators with unresolved type on both sides
 CREATE FUNCTION duckdb.unresolved_type_operator(duckdb.unresolved_type, duckdb.unresolved_type) RETURNS duckdb.unresolved_type AS 'MODULE_PATHNAME', 'duckdb_unresolved_type_operator' LANGUAGE C IMMUTABLE STRICT;
@@ -267,12 +267,12 @@ CREATE OPERATOR pg_catalog.<= (
 
 CREATE OPERATOR pg_catalog.<= (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator_bool
 );
 
 CREATE OPERATOR pg_catalog.<= (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator_bool
 );
@@ -285,12 +285,12 @@ CREATE OPERATOR pg_catalog.< (
 
 CREATE OPERATOR pg_catalog.< (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator_bool
 );
 
 CREATE OPERATOR pg_catalog.< (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator_bool
 );
@@ -303,12 +303,12 @@ CREATE OPERATOR pg_catalog.<> (
 
 CREATE OPERATOR pg_catalog.<> (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator_bool
 );
 
 CREATE OPERATOR pg_catalog.<> (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator_bool
 );
@@ -321,12 +321,12 @@ CREATE OPERATOR pg_catalog.= (
 
 CREATE OPERATOR pg_catalog.= (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator_bool
 );
 
 CREATE OPERATOR pg_catalog.= (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator_bool
 );
@@ -339,12 +339,12 @@ CREATE OPERATOR pg_catalog.> (
 
 CREATE OPERATOR pg_catalog.> (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator_bool
 );
 
 CREATE OPERATOR pg_catalog.> (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator_bool
 );
@@ -357,12 +357,12 @@ CREATE OPERATOR pg_catalog.>= (
 
 CREATE OPERATOR pg_catalog.>= (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator_bool
 );
 
 CREATE OPERATOR pg_catalog.>= (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator_bool
 );
@@ -376,12 +376,12 @@ CREATE OPERATOR pg_catalog.+ (
 
 CREATE OPERATOR pg_catalog.+ (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator
 );
 
 CREATE OPERATOR pg_catalog.+ (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator
 );
@@ -394,12 +394,12 @@ CREATE OPERATOR pg_catalog.- (
 
 CREATE OPERATOR pg_catalog.- (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator
 );
 
 CREATE OPERATOR pg_catalog.- (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator
 );
@@ -412,12 +412,12 @@ CREATE OPERATOR pg_catalog.* (
 
 CREATE OPERATOR pg_catalog.* (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator
 );
 
 CREATE OPERATOR pg_catalog.* (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator
 );
@@ -430,12 +430,12 @@ CREATE OPERATOR pg_catalog./ (
 
 CREATE OPERATOR pg_catalog./ (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator
 );
 
 CREATE OPERATOR pg_catalog./ (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator
 );
@@ -466,9 +466,9 @@ DEFAULT FOR TYPE duckdb.unresolved_type USING hash AS
 -- State transition function
 CREATE FUNCTION duckdb.unresolved_type_state_trans(state duckdb.unresolved_type, value duckdb.unresolved_type)
 RETURNS duckdb.unresolved_type AS 'MODULE_PATHNAME', 'duckdb_unresolved_type_operator' LANGUAGE C IMMUTABLE STRICT;
-CREATE FUNCTION duckdb.unresolved_type_state_trans(state duckdb.unresolved_type, value duckdb.unresolved_type, other "any")
+CREATE FUNCTION duckdb.unresolved_type_state_trans(state duckdb.unresolved_type, value duckdb.unresolved_type, other pg_catalog.any)
 RETURNS duckdb.unresolved_type AS 'MODULE_PATHNAME', 'duckdb_unresolved_type_operator' LANGUAGE C IMMUTABLE STRICT;
-CREATE FUNCTION duckdb.unresolved_type_state_trans(state duckdb.unresolved_type, value duckdb.unresolved_type, other "any", another "any")
+CREATE FUNCTION duckdb.unresolved_type_state_trans(state duckdb.unresolved_type, value duckdb.unresolved_type, other pg_catalog.any, another pg_catalog.any)
 RETURNS duckdb.unresolved_type AS 'MODULE_PATHNAME', 'duckdb_unresolved_type_operator' LANGUAGE C IMMUTABLE STRICT;
 
 -- Final function
@@ -487,37 +487,37 @@ CREATE AGGREGATE @extschema@.arbitrary(duckdb.unresolved_type) (
     FINALFUNC = duckdb.unresolved_type_final
 );
 
-CREATE AGGREGATE @extschema@.arg_max(duckdb.unresolved_type, "any") (
+CREATE AGGREGATE @extschema@.arg_max(duckdb.unresolved_type, pg_catalog.any) (
     SFUNC = duckdb.unresolved_type_state_trans,
     STYPE = duckdb.unresolved_type,
     FINALFUNC = duckdb.unresolved_type_final
 );
 
-CREATE AGGREGATE @extschema@.arg_max(duckdb.unresolved_type, "any", "any") (
+CREATE AGGREGATE @extschema@.arg_max(duckdb.unresolved_type, pg_catalog.any, pg_catalog.any) (
     SFUNC = duckdb.unresolved_type_state_trans,
     STYPE = duckdb.unresolved_type,
     FINALFUNC = duckdb.unresolved_type_final
 );
 
-CREATE AGGREGATE @extschema@.arg_max_null(duckdb.unresolved_type, "any") (
+CREATE AGGREGATE @extschema@.arg_max_null(duckdb.unresolved_type, pg_catalog.any) (
     SFUNC = duckdb.unresolved_type_state_trans,
     STYPE = duckdb.unresolved_type,
     FINALFUNC = duckdb.unresolved_type_final
 );
 
-CREATE AGGREGATE @extschema@.arg_min(duckdb.unresolved_type, "any") (
+CREATE AGGREGATE @extschema@.arg_min(duckdb.unresolved_type, pg_catalog.any) (
     SFUNC = duckdb.unresolved_type_state_trans,
     STYPE = duckdb.unresolved_type,
     FINALFUNC = duckdb.unresolved_type_final
 );
 
-CREATE AGGREGATE @extschema@.arg_min(duckdb.unresolved_type, "any", "any") (
+CREATE AGGREGATE @extschema@.arg_min(duckdb.unresolved_type, pg_catalog.any, pg_catalog.any) (
     SFUNC = duckdb.unresolved_type_state_trans,
     STYPE = duckdb.unresolved_type,
     FINALFUNC = duckdb.unresolved_type_final
 );
 
-CREATE AGGREGATE @extschema@.arg_min_null(duckdb.unresolved_type, "any") (
+CREATE AGGREGATE @extschema@.arg_min_null(duckdb.unresolved_type, pg_catalog.any) (
     SFUNC = duckdb.unresolved_type_state_trans,
     STYPE = duckdb.unresolved_type,
     FINALFUNC = duckdb.unresolved_type_final
@@ -603,13 +603,13 @@ CREATE AGGREGATE @extschema@.histogram(duckdb.unresolved_type) (
     FINALFUNC = duckdb.unresolved_type_final
 );
 
-CREATE AGGREGATE @extschema@.histogram(duckdb.unresolved_type, "any") (
+CREATE AGGREGATE @extschema@.histogram(duckdb.unresolved_type, pg_catalog.any) (
     SFUNC = duckdb.unresolved_type_state_trans,
     STYPE = duckdb.unresolved_type,
     FINALFUNC = duckdb.unresolved_type_final
 );
 
-CREATE AGGREGATE @extschema@.histogram_exact(duckdb.unresolved_type, "any") (
+CREATE AGGREGATE @extschema@.histogram_exact(duckdb.unresolved_type, pg_catalog.any) (
     SFUNC = duckdb.unresolved_type_state_trans,
     STYPE = duckdb.unresolved_type,
     FINALFUNC = duckdb.unresolved_type_final
@@ -633,37 +633,37 @@ CREATE AGGREGATE @extschema@.max(duckdb.unresolved_type) (
     FINALFUNC = duckdb.unresolved_type_final
 );
 
-CREATE AGGREGATE @extschema@.max(duckdb.unresolved_type, "any") (
+CREATE AGGREGATE @extschema@.max(duckdb.unresolved_type, pg_catalog.any) (
     SFUNC = duckdb.unresolved_type_state_trans,
     STYPE = duckdb.unresolved_type,
     FINALFUNC = duckdb.unresolved_type_final
 );
 
-CREATE AGGREGATE @extschema@.max_by(duckdb.unresolved_type, "any") (
+CREATE AGGREGATE @extschema@.max_by(duckdb.unresolved_type, pg_catalog.any) (
     SFUNC = duckdb.unresolved_type_state_trans,
     STYPE = duckdb.unresolved_type,
     FINALFUNC = duckdb.unresolved_type_final
 );
 
-CREATE AGGREGATE @extschema@.max_by(duckdb.unresolved_type, "any", "any") (
+CREATE AGGREGATE @extschema@.max_by(duckdb.unresolved_type, pg_catalog.any, pg_catalog.any) (
     SFUNC = duckdb.unresolved_type_state_trans,
     STYPE = duckdb.unresolved_type,
     FINALFUNC = duckdb.unresolved_type_final
 );
 
-CREATE AGGREGATE @extschema@.min(duckdb.unresolved_type, "any") (
+CREATE AGGREGATE @extschema@.min(duckdb.unresolved_type, pg_catalog.any) (
     SFUNC = duckdb.unresolved_type_state_trans,
     STYPE = duckdb.unresolved_type,
     FINALFUNC = duckdb.unresolved_type_final
 );
 
-CREATE AGGREGATE @extschema@.min_by(duckdb.unresolved_type, "any") (
+CREATE AGGREGATE @extschema@.min_by(duckdb.unresolved_type, pg_catalog.any) (
     SFUNC = duckdb.unresolved_type_state_trans,
     STYPE = duckdb.unresolved_type,
     FINALFUNC = duckdb.unresolved_type_final
 );
 
-CREATE AGGREGATE @extschema@.min_by(duckdb.unresolved_type, "any", "any") (
+CREATE AGGREGATE @extschema@.min_by(duckdb.unresolved_type, pg_catalog.any, pg_catalog.any) (
     SFUNC = duckdb.unresolved_type_state_trans,
     STYPE = duckdb.unresolved_type,
     FINALFUNC = duckdb.unresolved_type_final
@@ -675,7 +675,7 @@ CREATE AGGREGATE @extschema@.product(duckdb.unresolved_type) (
     FINALFUNC = duckdb.unresolved_type_final
 );
 
-CREATE AGGREGATE @extschema@.string_agg(duckdb.unresolved_type, "any") (
+CREATE AGGREGATE @extschema@.string_agg(duckdb.unresolved_type, pg_catalog.any) (
     SFUNC = duckdb.unresolved_type_state_trans,
     STYPE = duckdb.unresolved_type,
     FINALFUNC = duckdb.unresolved_type_final
@@ -730,19 +730,19 @@ CREATE CAST (duckdb.unresolved_type AS varchar[])
     WITH INOUT;
 
 -- DATE
-CREATE CAST (duckdb.unresolved_type AS date)
+CREATE CAST (duckdb.unresolved_type AS pg_catalog.date)
     WITH INOUT;
-CREATE CAST (duckdb.unresolved_type AS date[])
+CREATE CAST (duckdb.unresolved_type AS pg_catalog.date[])
     WITH INOUT;
 
 -- TIMESTAMP
-CREATE CAST (duckdb.unresolved_type AS timestamp)
+CREATE CAST (duckdb.unresolved_type AS pg_catalog.timestamp)
     WITH INOUT;
-CREATE CAST (duckdb.unresolved_type AS timestamp[])
+CREATE CAST (duckdb.unresolved_type AS pg_catalog.timestamp[])
     WITH INOUT;
 
 -- TIMESTAMP WITH TIME ZONE
-CREATE CAST (duckdb.unresolved_type AS timestamptz)
+CREATE CAST (duckdb.unresolved_type AS pg_catalog.timestamptz)
     WITH INOUT;
 
 -- FLOAT
@@ -1084,12 +1084,12 @@ AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
 -- json_group_array
-CREATE FUNCTION @extschema@.json_group_array_sfunc(JSON, "any")
+CREATE FUNCTION @extschema@.json_group_array_sfunc(JSON, pg_catalog.any)
 RETURNS JSON
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE AGGREGATE @extschema@.json_group_array("any")
+CREATE AGGREGATE @extschema@.json_group_array(pg_catalog.any)
 (
     sfunc = @extschema@.json_group_array_sfunc,
     stype = JSON,
@@ -1097,12 +1097,12 @@ CREATE AGGREGATE @extschema@.json_group_array("any")
 );
 
 -- json_group_object
-CREATE FUNCTION @extschema@.json_group_object_sfunc(JSON, "any", "any")
+CREATE FUNCTION @extschema@.json_group_object_sfunc(JSON, pg_catalog.any, pg_catalog.any)
 RETURNS JSON
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE AGGREGATE @extschema@.json_group_object("any", "any")
+CREATE AGGREGATE @extschema@.json_group_object(pg_catalog.any, pg_catalog.any)
 (
     sfunc = @extschema@.json_group_object_sfunc,
     stype = JSON,
@@ -1204,17 +1204,17 @@ CREATE AGGREGATE @extschema@.min(duckdb.unresolved_type) (
     FINALFUNC = duckdb.unresolved_type_final
 );
 
-CREATE FUNCTION @extschema@.strftime(date, text) RETURNS text
+CREATE FUNCTION @extschema@.strftime(pg_catalog.date, text) RETURNS text
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.strftime(timestamp, text) RETURNS text
+CREATE FUNCTION @extschema@.strftime(pg_catalog.timestamp, text) RETURNS text
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.strftime(timestamptz, text) RETURNS text
+CREATE FUNCTION @extschema@.strftime(pg_catalog.timestamptz, text) RETURNS text
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
@@ -1224,42 +1224,42 @@ SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.strptime(text, text) RETURNS timestamp
+CREATE FUNCTION @extschema@.strptime(text, text) RETURNS pg_catalog.timestamp
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.strptime(duckdb.unresolved_type, text) RETURNS timestamp
+CREATE FUNCTION @extschema@.strptime(duckdb.unresolved_type, text) RETURNS pg_catalog.timestamp
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.strptime(text, text[]) RETURNS timestamp
+CREATE FUNCTION @extschema@.strptime(text, text[]) RETURNS pg_catalog.timestamp
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.strptime(duckdb.unresolved_type, text[]) RETURNS timestamp
+CREATE FUNCTION @extschema@.strptime(duckdb.unresolved_type, text[]) RETURNS pg_catalog.timestamp
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.epoch(interval) RETURNS double
+CREATE FUNCTION @extschema@.epoch(pg_catalog.interval) RETURNS double
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.epoch(date) RETURNS double
+CREATE FUNCTION @extschema@.epoch(pg_catalog.date) RETURNS double
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.epoch(timestamp) RETURNS double
+CREATE FUNCTION @extschema@.epoch(pg_catalog.timestamp) RETURNS double
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.epoch(timestamptz) RETURNS double
+CREATE FUNCTION @extschema@.epoch(pg_catalog.timestamptz) RETURNS double
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
@@ -1279,22 +1279,22 @@ SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.epoch_ms(interval) RETURNS bigint
+CREATE FUNCTION @extschema@.epoch_ms(pg_catalog.interval) RETURNS bigint
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.epoch_ms(date) RETURNS bigint
+CREATE FUNCTION @extschema@.epoch_ms(pg_catalog.date) RETURNS bigint
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.epoch_ms(timestamp) RETURNS bigint
+CREATE FUNCTION @extschema@.epoch_ms(pg_catalog.timestamp) RETURNS bigint
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.epoch_ms(timestamptz) RETURNS bigint
+CREATE FUNCTION @extschema@.epoch_ms(pg_catalog.timestamptz) RETURNS bigint
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
@@ -1309,7 +1309,7 @@ SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.epoch_ms(bigint) RETURNS timestamp
+CREATE FUNCTION @extschema@.epoch_ms(bigint) RETURNS pg_catalog.timestamp
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
@@ -1319,22 +1319,22 @@ SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.epoch_us(interval) RETURNS bigint
+CREATE FUNCTION @extschema@.epoch_us(pg_catalog.interval) RETURNS bigint
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.epoch_us(date) RETURNS bigint
+CREATE FUNCTION @extschema@.epoch_us(pg_catalog.date) RETURNS bigint
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.epoch_us(timestamp) RETURNS bigint
+CREATE FUNCTION @extschema@.epoch_us(pg_catalog.timestamp) RETURNS bigint
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.epoch_us(timestamptz) RETURNS bigint
+CREATE FUNCTION @extschema@.epoch_us(pg_catalog.timestamptz) RETURNS bigint
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
@@ -1354,22 +1354,22 @@ SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.epoch_ns(interval) RETURNS bigint
+CREATE FUNCTION @extschema@.epoch_ns(pg_catalog.interval) RETURNS bigint
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.epoch_ns(date) RETURNS bigint
+CREATE FUNCTION @extschema@.epoch_ns(pg_catalog.date) RETURNS bigint
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.epoch_ns(timestamp) RETURNS bigint
+CREATE FUNCTION @extschema@.epoch_ns(pg_catalog.timestamp) RETURNS bigint
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.epoch_ns(timestamptz) RETURNS bigint
+CREATE FUNCTION @extschema@.epoch_ns(pg_catalog.timestamptz) RETURNS bigint
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
@@ -1389,22 +1389,22 @@ SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.make_timestamp(microseconds bigint) RETURNS timestamp
+CREATE FUNCTION @extschema@.make_timestamp(microseconds bigint) RETURNS pg_catalog.timestamp
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.make_timestamp(microseconds duckdb.unresolved_type) RETURNS timestamp
+CREATE FUNCTION @extschema@.make_timestamp(microseconds duckdb.unresolved_type) RETURNS pg_catalog.timestamp
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.make_timestamptz(microseconds bigint) RETURNS timestamptz
+CREATE FUNCTION @extschema@.make_timestamptz(microseconds bigint) RETURNS pg_catalog.timestamptz
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.make_timestamptz(microseconds duckdb.unresolved_type) RETURNS timestamptz
+CREATE FUNCTION @extschema@.make_timestamptz(microseconds duckdb.unresolved_type) RETURNS pg_catalog.timestamptz
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
@@ -1438,62 +1438,62 @@ LANGUAGE C;
 -- @extschema@, because these will never conflict.
 DO $$
 BEGIN
-CREATE FUNCTION @extschema@.time_bucket(bucket_width interval, ts date)
-RETURNS date
+CREATE FUNCTION @extschema@.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.date)
+RETURNS pg_catalog.date
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.time_bucket(bucket_width interval, ts date, origin date)
-RETURNS date
+CREATE FUNCTION @extschema@.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.date, origin pg_catalog.date)
+RETURNS pg_catalog.date
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.time_bucket(bucket_width interval, ts date, time_offset interval)
-RETURNS date
+CREATE FUNCTION @extschema@.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.date, time_offset pg_catalog.interval)
+RETURNS pg_catalog.date
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.time_bucket(bucket_width interval, ts timestamp)
-RETURNS timestamp
+CREATE FUNCTION @extschema@.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.timestamp)
+RETURNS pg_catalog.timestamp
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.time_bucket(bucket_width interval, ts timestamp, time_offset interval)
-RETURNS timestamp
+CREATE FUNCTION @extschema@.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.timestamp, time_offset pg_catalog.interval)
+RETURNS pg_catalog.timestamp
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.time_bucket(bucket_width interval, ts timestamp, origin timestamp)
-RETURNS timestamp
+CREATE FUNCTION @extschema@.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.timestamp, origin pg_catalog.timestamp)
+RETURNS pg_catalog.timestamp
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.time_bucket(bucket_width interval, ts timestamp with time zone)
-RETURNS timestamp with time zone
+CREATE FUNCTION @extschema@.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.timestamptz)
+RETURNS pg_catalog.timestamptz
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.time_bucket(bucket_width interval, ts timestamp with time zone, time_offset interval)
-RETURNS timestamp with time zone
+CREATE FUNCTION @extschema@.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.timestamptz, time_offset pg_catalog.interval)
+RETURNS pg_catalog.timestamptz
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.time_bucket(bucket_width interval, ts timestamp with time zone, origin timestamp with time zone)
-RETURNS timestamp with time zone
+CREATE FUNCTION @extschema@.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.timestamptz, origin pg_catalog.timestamptz)
+RETURNS pg_catalog.timestamptz
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.time_bucket(bucket_width interval, ts timestamp with time zone, timezone varchar)
-RETURNS timestamp with time zone
+CREATE FUNCTION @extschema@.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.timestamptz, timezone varchar)
+RETURNS pg_catalog.timestamptz
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
@@ -1508,146 +1508,146 @@ WHEN duplicate_function THEN
 END;
 $$;
 
-CREATE FUNCTION @extschema@.time_bucket(bucket_width interval, ts duckdb.unresolved_type)
+CREATE FUNCTION @extschema@.time_bucket(bucket_width pg_catalog.interval, ts duckdb.unresolved_type)
 RETURNS duckdb.unresolved_type
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.time_bucket(bucket_width interval, ts duckdb.unresolved_type, time_offset interval)
+CREATE FUNCTION @extschema@.time_bucket(bucket_width pg_catalog.interval, ts duckdb.unresolved_type, time_offset pg_catalog.interval)
 RETURNS duckdb.unresolved_type
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.time_bucket(bucket_width interval, ts duckdb.unresolved_type, origin date)
+CREATE FUNCTION @extschema@.time_bucket(bucket_width pg_catalog.interval, ts duckdb.unresolved_type, origin pg_catalog.date)
 RETURNS duckdb.unresolved_type
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.time_bucket(bucket_width interval, ts duckdb.unresolved_type, origin timestamp)
+CREATE FUNCTION @extschema@.time_bucket(bucket_width pg_catalog.interval, ts duckdb.unresolved_type, origin pg_catalog.timestamp)
 RETURNS duckdb.unresolved_type
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.time_bucket(bucket_width interval, ts duckdb.unresolved_type, origin timestamp with time zone)
+CREATE FUNCTION @extschema@.time_bucket(bucket_width pg_catalog.interval, ts duckdb.unresolved_type, origin pg_catalog.timestamptz)
 RETURNS duckdb.unresolved_type
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION @extschema@.time_bucket(bucket_width interval, ts duckdb.unresolved_type, timezone varchar)
+CREATE FUNCTION @extschema@.time_bucket(bucket_width pg_catalog.interval, ts duckdb.unresolved_type, timezone varchar)
 RETURNS duckdb.unresolved_type
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION duckdb.time_bucket(bucket_width interval, ts date)
-RETURNS date
+CREATE FUNCTION duckdb.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.date)
+RETURNS pg_catalog.date
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION duckdb.time_bucket(bucket_width interval, ts date, origin date)
-RETURNS date
+CREATE FUNCTION duckdb.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.date, origin pg_catalog.date)
+RETURNS pg_catalog.date
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION duckdb.time_bucket(bucket_width interval, ts date, time_offset interval)
-RETURNS date
+CREATE FUNCTION duckdb.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.date, time_offset pg_catalog.interval)
+RETURNS pg_catalog.date
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION duckdb.time_bucket(bucket_width interval, ts timestamp)
-RETURNS timestamp
+CREATE FUNCTION duckdb.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.timestamp)
+RETURNS pg_catalog.timestamp
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION duckdb.time_bucket(bucket_width interval, ts timestamp, time_offset interval)
-RETURNS timestamp
+CREATE FUNCTION duckdb.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.timestamp, time_offset pg_catalog.interval)
+RETURNS pg_catalog.timestamp
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION duckdb.time_bucket(bucket_width interval, ts timestamp, origin timestamp)
-RETURNS timestamp
+CREATE FUNCTION duckdb.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.timestamp, origin pg_catalog.timestamp)
+RETURNS pg_catalog.timestamp
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION duckdb.time_bucket(bucket_width interval, ts timestamp with time zone)
-RETURNS timestamp with time zone
+CREATE FUNCTION duckdb.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.timestamptz)
+RETURNS pg_catalog.timestamptz
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION duckdb.time_bucket(bucket_width interval, ts timestamp with time zone, time_offset interval)
-RETURNS timestamp with time zone
+CREATE FUNCTION duckdb.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.timestamptz, time_offset pg_catalog.interval)
+RETURNS pg_catalog.timestamptz
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION duckdb.time_bucket(bucket_width interval, ts timestamp with time zone, origin timestamp with time zone)
-RETURNS timestamp with time zone
+CREATE FUNCTION duckdb.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.timestamptz, origin pg_catalog.timestamptz)
+RETURNS pg_catalog.timestamptz
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION duckdb.time_bucket(bucket_width interval, ts timestamp with time zone, timezone varchar)
-RETURNS timestamp with time zone
+CREATE FUNCTION duckdb.time_bucket(bucket_width pg_catalog.interval, ts pg_catalog.timestamptz, timezone varchar)
+RETURNS pg_catalog.timestamptz
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION duckdb.time_bucket(bucket_width interval, ts duckdb.unresolved_type)
+CREATE FUNCTION duckdb.time_bucket(bucket_width pg_catalog.interval, ts duckdb.unresolved_type)
 RETURNS duckdb.unresolved_type
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION duckdb.time_bucket(bucket_width interval, ts duckdb.unresolved_type, time_offset interval)
+CREATE FUNCTION duckdb.time_bucket(bucket_width pg_catalog.interval, ts duckdb.unresolved_type, time_offset pg_catalog.interval)
 RETURNS duckdb.unresolved_type
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION duckdb.time_bucket(bucket_width interval, ts duckdb.unresolved_type, origin date)
+CREATE FUNCTION duckdb.time_bucket(bucket_width pg_catalog.interval, ts duckdb.unresolved_type, origin pg_catalog.date)
 RETURNS duckdb.unresolved_type
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION duckdb.time_bucket(bucket_width interval, ts duckdb.unresolved_type, origin timestamp)
+CREATE FUNCTION duckdb.time_bucket(bucket_width pg_catalog.interval, ts duckdb.unresolved_type, origin pg_catalog.timestamp)
 RETURNS duckdb.unresolved_type
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION duckdb.time_bucket(bucket_width interval, ts duckdb.unresolved_type, origin timestamp with time zone)
+CREATE FUNCTION duckdb.time_bucket(bucket_width pg_catalog.interval, ts duckdb.unresolved_type, origin pg_catalog.timestamptz)
 RETURNS duckdb.unresolved_type
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE FUNCTION duckdb.time_bucket(bucket_width interval, ts duckdb.unresolved_type, timezone varchar)
+CREATE FUNCTION duckdb.time_bucket(bucket_width pg_catalog.interval, ts duckdb.unresolved_type, timezone varchar)
 RETURNS duckdb.unresolved_type
 SET search_path = pg_catalog, pg_temp
 AS 'MODULE_PATHNAME', 'duckdb_only_function'
 LANGUAGE C;
 
-CREATE CAST (duckdb.unresolved_type AS interval)
+CREATE CAST (duckdb.unresolved_type AS pg_catalog.interval)
     WITH INOUT;
-CREATE CAST (duckdb.unresolved_type AS interval[])
+CREATE CAST (duckdb.unresolved_type AS pg_catalog.interval[])
     WITH INOUT;
 
-CREATE CAST (duckdb.unresolved_type AS time)
+CREATE CAST (duckdb.unresolved_type AS pg_catalog.time)
     WITH INOUT;
-CREATE CAST (duckdb.unresolved_type AS time[])
+CREATE CAST (duckdb.unresolved_type AS pg_catalog.time[])
     WITH INOUT;
 
 CREATE CAST (duckdb.unresolved_type AS timetz)
@@ -1678,12 +1678,12 @@ CREATE OPERATOR pg_catalog.~ (
 
 CREATE OPERATOR pg_catalog.~ (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator
 );
 
 CREATE OPERATOR pg_catalog.~ (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator
 );
@@ -1696,12 +1696,12 @@ CREATE OPERATOR pg_catalog.!~ (
 
 CREATE OPERATOR pg_catalog.!~ (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator
 );
 
 CREATE OPERATOR pg_catalog.!~ (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator
 );
@@ -1714,12 +1714,12 @@ CREATE OPERATOR pg_catalog.~~ (
 
 CREATE OPERATOR pg_catalog.~~ (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator
 );
 
 CREATE OPERATOR pg_catalog.~~ (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator
 );
@@ -1732,12 +1732,12 @@ CREATE OPERATOR pg_catalog.~~* (
 
 CREATE OPERATOR pg_catalog.~~* (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator
 );
 
 CREATE OPERATOR pg_catalog.~~* (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator
 );
@@ -1750,12 +1750,12 @@ CREATE OPERATOR pg_catalog.!~~ (
 
 CREATE OPERATOR pg_catalog.!~~ (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator
 );
 
 CREATE OPERATOR pg_catalog.!~~ (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator
 );
@@ -1768,12 +1768,12 @@ CREATE OPERATOR pg_catalog.!~~* (
 
 CREATE OPERATOR pg_catalog.!~~* (
     LEFTARG = duckdb.unresolved_type,
-    RIGHTARG = "any",
+    RIGHTARG = pg_catalog.any,
     FUNCTION = duckdb.unresolved_type_operator
 );
 
 CREATE OPERATOR pg_catalog.!~~* (
-    LEFTARG = "any",
+    LEFTARG = pg_catalog.any,
     RIGHTARG = duckdb.unresolved_type,
     FUNCTION = duckdb.unresolved_type_operator
 );

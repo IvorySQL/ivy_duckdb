@@ -1302,7 +1302,7 @@ ConvertDuckToPostgresValue(TupleTableSlot *slot, duckdb::Value &value, idx_t col
 				slot->tts_values[col] = ConvertToStringDatum(value);
 				return true;
 			}
-			if (oid == pgduckdb::IvoryRawLongOid()) {
+			if (oid == pgduckdb::IvoryRawOid() || oid == pgduckdb::IvoryLongRawOid()) {
 				slot->tts_values[col] = ConvertBinaryDatum(value);
 				return true;
 			}
@@ -1502,8 +1502,10 @@ ConvertPostgresToBaseDuckColumnType(Form_pg_attribute &attribute) {
 				return make_ivory(duckdb::LogicalTypeId::VARCHAR, "oracharchar");
 			if (typoid == pgduckdb::IvoryOracharbyteOid())
 				return make_ivory(duckdb::LogicalTypeId::VARCHAR, "oracharbyte");
-			if (typoid == pgduckdb::IvoryRawLongOid())
-				return make_ivory(duckdb::LogicalTypeId::BLOB, "raw_long");
+			if (typoid == pgduckdb::IvoryRawOid())
+				return make_ivory(duckdb::LogicalTypeId::BLOB, "raw");
+			if (typoid == pgduckdb::IvoryLongRawOid())
+				return make_ivory(duckdb::LogicalTypeId::BLOB, "long_raw");
 			if (typoid == pgduckdb::IvoryXmltypeOid())
 				return make_ivory(duckdb::LogicalTypeId::VARCHAR, "xmltype");
 		}
@@ -1665,7 +1667,8 @@ IvoryOidByTypname(const std::string &name) {
 	if (name == "oravarcharbyte")  return pgduckdb::IvoryOravarcharbyteOid();
 	if (name == "oracharchar")     return pgduckdb::IvoryOracharcharOid();
 	if (name == "oracharbyte")     return pgduckdb::IvoryOracharbyteOid();
-	if (name == "raw_long")        return pgduckdb::IvoryRawLongOid();
+	if (name == "raw")             return pgduckdb::IvoryRawOid();
+	if (name == "long_raw")        return pgduckdb::IvoryLongRawOid();
 	if (name == "xmltype")         return pgduckdb::IvoryXmltypeOid();
 	return InvalidOid;
 }

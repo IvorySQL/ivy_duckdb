@@ -583,6 +583,70 @@ pgduckdb_relation_name(Oid relation_oid) {
 }
 
 /*
+ * pgduckdb_canonicalize_pg_type_aliases rewrites PG-internal type aliases
+ * such as "pg_catalog.float8" to their SQL-standard names ("double precision")
+ * in a deparsed SQL string.
+ *
+ * On vanilla PostgreSQL, format_type() already returns SQL-standard names, so
+ * this is a no-op (no occurrences of "pg_catalog.float8" etc. in the input).
+ *
+ * On IvorySQL with Oracle compatibility enabled, the format_type() hook
+ * returns the PG-internal alias (e.g. "pg_catalog.float8") instead of
+ * "double precision". DuckDB doesn't recognize these aliases and rejects the
+ * deparsed query with `Type with name float8 does not exist`. Rewriting them
+ * here keeps the fix isolated to pg_duckdb's own output and does not touch
+ * IvorySQL's runtime configuration -- the user's compatibility mode stays
+ * exactly as they set it.
+ *
+ * Only the schema-qualified form "pg_catalog.<alias>" is rewritten, which is
+ * exactly what format_type emits. Unqualified identifiers or string literals
+ * that happen to contain "float8" etc. are not affected. A trailing-word
+ * boundary check skips matches that are part of a longer identifier (e.g.
+ * "pg_catalog.float8_array").
+ *
+ * The argument is consumed (pfree'd) and a freshly palloc'd replacement
+ * is returned.
+ */
+static char *
+pgduckdb_canonicalize_pg_type_aliases(char *input) {
+	static const struct {
+		const char *from;
+		const char *to;
+	} kAliasMap[] = {
+		{"pg_catalog.float8", "double precision"},
+		{"pg_catalog.float4", "real"},
+		{"pg_catalog.int8", "bigint"},
+		{"pg_catalog.int4", "integer"},
+		{"pg_catalog.int2", "smallint"},
+		{"pg_catalog.bool", "boolean"},
+	};
+
+	std::string s(input);
+	pfree(input);
+
+	for (const auto &m : kAliasMap) {
+		const std::string from_str(m.from);
+		const std::string to_str(m.to);
+		size_t pos = 0;
+		while ((pos = s.find(from_str, pos)) != std::string::npos) {
+			size_t end = pos + from_str.size();
+			char next = (end < s.size()) ? s[end] : '\0';
+			if (next == '_' || isalnum(static_cast<unsigned char>(next))) {
+				/* Part of a longer identifier; skip. */
+				pos = end;
+				continue;
+			}
+			s.replace(pos, from_str.size(), to_str);
+			pos += to_str.size();
+		}
+	}
+
+	char *result = static_cast<char *>(palloc(s.size() + 1));
+	memcpy(result, s.data(), s.size() + 1);
+	return result;
+}
+
+/*
  * pgduckdb_get_querydef returns the definition of a given query in DuckDB
  * syntax. This definition includes the query's SQL string, but does not
  * include the query's parameters.
@@ -604,7 +668,7 @@ pgduckdb_get_querydef(Query *query) {
 	SetConfigOption("DateStyle", "ISO, YMD", PGC_USERSET, PGC_S_SESSION);
 	char *result = pgduckdb_pg_get_querydef_internal(query, false);
 	AtEOXact_GUC(false, save_nestlevel);
-	return result;
+	return pgduckdb_canonicalize_pg_type_aliases(result);
 }
 
 /*
